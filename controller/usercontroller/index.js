@@ -1,0 +1,169 @@
+$(document).ready(function() {
+$('#formulariouser') .bootstrapValidator({
+message: 'This value is not valid',
+feedbackIcons: {
+valid: 'glyphicon glyphicon-ok',
+invalid: 'glyphicon glyphicon-remove',
+validating: 'glyphicon glyphicon-refresh'
+},
+excluded: [':disabled'],
+fields: {
+nick: {
+message: 'The username is not valid',
+validators: {
+notEmpty: {
+message: 'El nick es obligatorio y no puede estar vacio.'
+},
+stringLength: {
+min: 4,
+max: 12,
+message: 'Minimo 4 caracteres y Maximo 12 '
+},
+regexp: {
+regexp: /^[a-zA-Z0-9_\.]+$/,
+message: 'No se permiten espacios'
+}
+}
+},
+correo: {
+validators: {
+notEmpty: {
+message: 'El correo es obligatorio y no puede estar vacio'
+},
+emailAddress: {
+message: 'Verifique !!No es una dirección de correo electrónico válida'
+}
+}
+},
+pass: {
+message: 'La contraseña no es valida',
+validators: {
+notEmpty: {
+message: 'La contraseña es obligatoria y no puede estar vacia.'
+},
+stringLength: {
+min: 4,
+max: 12,
+message: 'Minimo 4 caracteres y Maximo 12 '
+},
+regexp: {
+regexp: /^[a-zA-Z0-9_\.]+$/,
+message: 'No se permiten espacios'
+}
+}
+},
+nombre: {
+message: 'El nombre no es valido',
+validators: {
+notEmpty: {
+message: 'El nombre es obligatorio y no puede estar vacio.'
+},
+stringLength: {
+min: 3,
+max: 15,
+message: 'Minimo 3 caracteres y Maximo 15 '
+}
+}
+},
+
+}
+})
+.on('success.form.bv', function(e) {
+e.preventDefault();
+var f = $(this);
+var formData = new FormData(document.getElementById("formulariouser"));
+formData.append("dato", "valor");
+$.ajax({
+url: "../../model/users/index.php",
+type: "post",
+dataType: "html",
+data: formData,
+cache: false,
+contentType: false,
+processData: false
+})
+.done(function(res){
+$('#modaluser').modal('hide')
+readRecords();
+$('#formulariouser')[0].reset();
+$('#formulariouser').bootstrapValidator("resetForm",true); 
+});
+});
+$('#modaluser')
+.on('shown.bs.modal', function () {
+$('#formulariouser').find('[name="nick"]').focus();
+})
+});
+function readRecords() {
+$.get("lista.php", {}, function (data, status) {
+$(".lista_user").html(data);
+});
+}
+// delete from general
+function Deletecomplet(id) {
+swal({
+title: 'Deseas Eliminar  Todo?',
+text: "Recueda,Una vez eliminado los Registros no se pueden Recuperar",
+type: 'warning',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: 'Si,Eliminarlo!'
+}).then(function () {
+$.post("../../model/users/deletegeneral.php", {
+id: id
+},
+function (data, status) {
+readRecords();
+}
+);
+})
+}
+// end delete
+// delete from individual
+function Delete(id) {
+swal({
+title: 'Deseas Eliminar el Registro?',
+text: "Recueda,Una vez eliminado no se puede Recuperar",
+type: 'warning',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: 'Si,Eliminarlo!'
+}).then(function () {
+$.post("../../model/users/delete.php", {
+id: id
+},
+function (data, status) {
+readRecords();
+}
+);
+})
+}
+// bloqueo usuarios
+function Bloquear_user(id,bloqueo){
+swal({
+title: 'Desea Actualizar el acceso?',
+text: "Recueda,Una vez actualizado el usuario sera activo o inactivo en la aplicacion",
+type: 'warning',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: 'Si,seguro!'
+}).then(function () {
+$.post("../../model/users/bloquear.php", {
+id: id,
+bloqueo:bloqueo
+},
+function (data, status) {
+readRecords();
+}
+);
+})
+}
+// end bloqueo
+
+// end delete 
+$(document).ready(function () {
+readRecords(); 
+});
