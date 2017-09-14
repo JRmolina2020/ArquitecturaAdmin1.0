@@ -43,7 +43,6 @@ $data.='</td>
 <td>
 <a onclick="Mostrar('.$fila['idusuarios'].')" class="btn  btn-sm btn-warning">  <i class="fa fa-cog" aria-hidden="true"></i></a>
 <a onclick="Delete('.$fila['idusuarios'].')" class="btn btn-sm  btn-danger"> <i class="fa fa-trash" aria-hidden="true"></i></a>
-<a onclick="Deletecomplet()" class="btn btn-sm  btn-danger"> <i class="fa fa-trash-o" aria-hidden="true"></i></a>
 </td>
 </tr>
 </tbody>';

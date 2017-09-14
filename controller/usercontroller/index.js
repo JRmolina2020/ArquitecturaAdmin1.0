@@ -99,26 +99,7 @@ $.get("lista.php", {}, function (data, status) {
 $(".lista_user").html(data);
 });
 }
-// delete from general
-function Deletecomplet(id) {
-swal({
-title: 'Deseas Eliminar  Todo?',
-text: "Recueda,Una vez eliminado los Registros no se pueden Recuperar",
-type: 'warning',
-showCancelButton: true,
-confirmButtonColor: '#3085d6',
-cancelButtonColor: '#d33',
-confirmButtonText: 'Si,Eliminarlo!'
-}).then(function () {
-$.post("../../model/users/deletegeneral.php", {
-id: id
-},
-function (data, status) {
-readRecords();
-}
-);
-})
-}
+
 // end delete
 // delete from individual
 function Delete(id) {
@@ -140,6 +121,7 @@ readRecords();
 );
 })
 }
+// end delete
 // bloqueo usuarios
 function Bloquear_user(id,bloqueo){
 swal({
@@ -162,8 +144,44 @@ readRecords();
 })
 }
 // end bloqueo
-
-// end delete 
+// mostrar datos individual
+function Mostrar(id) {
+$("#hidden_usuario_id").val(id);
+$.post("../../model/users/unique_info.php", {
+id: id
+},
+function (data, status) {
+var dato = JSON.parse(data);
+$("#nick2").val(dato.nick);
+$("#nombre2").val(dato.nombre_usuario);
+$("#correo2").val(dato.correo_usuario);
+$("#nivel2").val(dato.nivel);
+}
+);
+$("#modaluserupdate").modal("show");
+}
+// end mostrar datos individual
+// function modificar usuario
+function ModificarU() {
+var nick = $("#nick2").val();
+var nombre= $("#nombre2").val();
+var correo = $("#correo2").val();
+var nivel = $("#nivel2").val();
+var id = $("#hidden_usuario_id").val();
+$.post("../../model/users/update.php", {
+id:id,
+nick: nick,
+nombre:nombre,
+correo:correo,
+nivel:nivel
+}, 
+function (data, status) {
+readRecords();
+}
+);
+$("#modaluserupdate .close").click()
+}
+// end modificar usuario
 $(document).ready(function () {
 readRecords(); 
 });

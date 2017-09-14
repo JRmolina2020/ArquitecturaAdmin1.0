@@ -3,9 +3,17 @@
 <head>
 <title>Home</title>
 <link rel="import" href="../src/link.html">
+<!-- ///////////////////bloqueo automatico -->
+<?php include'../../model/conexion/index.php';
+include'../../model/login/permiso.php';?>
+<!-- ///////////////end bloqueo automatico -->
 </head>
 <body>
-<?php include'../src/bower_components/menus/index.php'; ?>
+<!-- ////////////////////////MENU -->
+<?php if ($_SESSION['nivel']=='ADMINISTRADOR') {include"../src/bower_components/menus/index.php";}
+else{include"../src/bower_components/menus/index.php";}?>
+<!-- ///////////////////////END MENU -->
+
 <div class="container-fluid">
 <div class="row">
 <div class="col-xs-12">
@@ -24,7 +32,7 @@ Nuevo usuario
 </div>
 </div>
 <!-- modals de registros y de edicion de usuarios -->
-<div class="modal fade" id="modaluser">
+<div class="modal fade" id="modaluser" data-backdrop="static" data-keyboard="false" data-keyboard=”false” tabindex=”-1″  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" role=”dialog”>
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-header">
@@ -74,6 +82,51 @@ Nuevo usuario
 <!-- /.modal-dialog -->
 </div>
 </div>
+
+<!-- ///////////////////////////////////update usuarios -->
+<div class="modal fade" id="modaluserupdate" data-backdrop="static" data-keyboard="false" data-keyboard=”false” tabindex=”-1″  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" role=”dialog”>
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span></button>
+<h4 class="modal-title">Editar usuario</h4>
+</div>
+<div class="modal-body">
+<form id="formulariousuariosupdate">
+<div class="form-group">
+<label for="text">Nick de usuario</label>
+<input type="input" class="form-control" id="nick2" name="nick2" placeholder="Ej:tomas12">
+</div>
+<div class="form-group">
+<label for="exampleInputEmail1">Email</label>
+<input type="email" class="form-control" id="correo2" name="correo2" placeholder="Correo electronico">
+</div>
+<div class="form-group">
+<label for="text">Nombre completo</label>
+<input type="input" class="form-control" id="nombre2" name="nombre2" placeholder="Ej:raul castellano">
+</div>
+<div class="form-group">
+<label>Nivel de usario</label>
+<select class="form-control select2" id="nivel2" name="nivel2" style="width: 100%;">
+<option value="SADMINISTRADOR">Super administrador</option>
+<option value="ADMINISTRADOR">Administrador</option>
+<option value="ASISTENTE">Asistente</option>
+</select>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cancelar</button>
+<button type="button" class="btn btn-primary"  onclick="ModificarU()">Modificar</button>
+<input type="hidden" id="hidden_usuario_id">
+</div>
+</form>
+</div>
+<!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>
+</div>
+<!-- ////////////////////////////////////////end update -->
 <!-- end modal de registros y edicion de usuarios -->
 <!-- js controller user -->
 <script src="../../controller/usercontroller/index.js"></script>
