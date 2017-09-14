@@ -91,7 +91,7 @@ header('location:../../');
 <!-- /.search form -->
 <!-- sidebar menu: : style can be found in sidebar.less -->
 <ul class="sidebar-menu" data-widget="tree">
-<li class="header">MAIN NAVIGATION</li>
+<li class="header"><?php echo $_SESSION['nivel']?></li>
 <li class="active treeview">
 <a href="">
 <i class="fa fa-dashboard"></i> <span>MENU</span>
@@ -103,19 +103,6 @@ header('location:../../');
 <li class="active"><a href="../home"><i class="fa fa-home"></i>Inicio</a></li>
 </ul>
 </li>
-<li>
-<a href="../user">
-<i class="fa fa-users"></i> <span>Usuarios</span>
-<span class="pull-right-container">
-<small class="label pull-right bg-green">new</small>
-</span>
-</a>
-</li>
-<li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
-<li class="header">LABELS</li>
-<li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-<li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-<li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
 </ul>
 </section>
 </aside>

@@ -31,7 +31,7 @@
   $foto = $var['foto'];
   $nombre = $var['nombre_usuario'];
   }
-  if($nick == $usuario && $contra == $pass2 && $nivel == 'SADMINISTRADOR'){
+  if($nick == $usuario && $contra == $pass2 && $nivel == 'ASISTENTE'){
   $_SESSION["nick"] = $nick;
   $_SESSION["nombre_usuario"] = $nombre;
   $_SESSION["nivel"] = $nivel;
@@ -46,18 +46,28 @@
   $_SESSION["correo_usuario"] = $correo;
   $_SESSION["foto"] = $foto;
   header('location:../../view/home/');
-
   }
+  elseif($nick == $usuario && $contra == $pass2 && $nivel == 'SADMINISTRADOR'){
+  $_SESSION["nick"] = $nick;
+  $_SESSION["nombre_usuario"] = $nombre;
+  $_SESSION["nivel"] = $nivel;
+  $_SESSION["correo_usuario"] = $correo;
+  $_SESSION["foto"] = $foto;
+  header('location:../../view/home/');
+  }
+
+
+
   else  {
-  header('location:../extend/alerta.php?msj=No tienes permiso&c=salir&p=salir&t=error');
+  header('location:../../');
   }
   }else
   {
-  header('location:../../view/componentes/alert/datos_incorrectos.php');
+  header('location:../../');
   }
   }
   // cierra method
   }else{
-  header('location:../../view/componentes/alert/alerta_error.php');
+  header('location:../../view/src/404.html');
   }
   ?>

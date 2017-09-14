@@ -26,13 +26,12 @@ $ruta="../../view/assets/avatar.png";
 }
 $ins=$con->query("INSERT INTO usuarios VALUES('','$nick','$pass','$nombre','$correo','$nivel',1,'$ruta')");
 if($ins){
-//header('location:../../view/componentes/alert/alerta_exito.php');
 }else{
 
 }
 $con->close();
 }else{
-header('location:../../view/componentes/alert/alerta_error.php');
+header('location:../../view/src/404.html');
 }
 ?>
 

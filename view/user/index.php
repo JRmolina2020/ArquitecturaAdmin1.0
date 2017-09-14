@@ -10,10 +10,8 @@ include'../../model/login/permiso.php';?>
 </head>
 <body>
 <!-- ////////////////////////MENU -->
-<?php if ($_SESSION['nivel']=='ADMINISTRADOR') {include"../src/bower_components/menus/index.php";}
-else{include"../src/bower_components/menus/index.php";}?>
+<?php if ($_SESSION['nivel']=='ADMINISTRADOR') {include"../src/bower_components/menus/administrador.php";}else if ($_SESSION['nivel']=='ASISTENTE') {	include"../src/bower_components/menus/asistente.php";}else{	include"../src/bower_components/menus/sadministrador.php";}?>
 <!-- ///////////////////////END MENU -->
-
 <div class="container-fluid">
 <div class="row">
 <div class="col-xs-12">
