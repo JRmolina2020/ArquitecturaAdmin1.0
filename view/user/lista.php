@@ -1,25 +1,19 @@
 <?php
 include("../../model/users/lista.php");
-echo "<script language=\"JavaScript\" src=\"../linkeo/js/busquedatabla.js\"></script>"; 
-$data = '
-<br><br>
-<div class="panel panel-primary">
+echo "<script language=\"JavaScript\" src=\"../src/js/table.js\"></script>"; 
+$data = '<br><br>
 
-<div class="panel-heading">
-<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Busquedad de usuarios"/>
-</div>
 
-<div class="table-responsive">
-<table class="table" id="dev-table">
+<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
 <thead>
 <tr>
 <th>Nick</th>
 <th>Nombre</th>
 <th>Correo</th>
 <th>Nivel</th>
-<th>Estado</th>
-<th>Pefil</th>
-<th>operaciones</th>
+<th>Bloqueo</th>
+<th>Perfil</th>
+<th>Acciones</th>
 </tr>
 </thead>
 <tbody>
@@ -39,19 +33,22 @@ else if ($fila['bloqueo'] == '0' ){
 $data.='<span onclick="Bloquear_user('.$fila['idusuarios'].','.$fila['bloqueo'].')" class="label label-danger">Bloqueado</span>';
 }
 $data.='</td>
-<td><img class="img-responsive img-circle" width="50" alt="Error al cargar" src="'.$fila['foto'].'"></td>
+<td><img class="img-responsive img-circle" width="40" height="40" alt="Error al cargar"src="'.$fila['foto'].'"></td>
 <td>
-<a onclick="Mostrar('.$fila['idusuarios'].')" class="btn  btn-sm btn-warning">  <i class="fa fa-cog" aria-hidden="true"></i></a>
-<a onclick="Delete('.$fila['idusuarios'].')" class="btn btn-sm  btn-danger"> <i class="fa fa-trash" aria-hidden="true"></i></a>
+<a onclick="Mostrar('.$fila['idusuarios'].')" class="btn  btn-xs btn-primary">  <i class="fa fa-pencil" aria-hidden="true"></i></a>
+<a onclick="Delete('.$fila['idusuarios'].')" class="btn  btn-xs btn-danger">  <i class="fa fa-remove" aria-hidden="true"></i></a>
 </td>
-</tr>
-</tbody>';
-
+</tr>';
 }
-$data .=  '
+
+$data .= '
+
+</tbody>
 </table>
 </div>
-</div>';
+</div>
+</div>
+';
 echo $data;
 ?>
 
