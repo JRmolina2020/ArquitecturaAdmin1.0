@@ -2,9 +2,8 @@
 include("../../model/users/lista.php");
 echo "<script language=\"JavaScript\" src=\"../src/js/table.js\"></script>"; 
 $data = '<br><br>
-
-
-<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+<div class="table-responsive">
+<table class="datatable table table-striped table-bordered">
 <thead>
 <tr>
 <th>Nick</th>
@@ -14,6 +13,7 @@ $data = '<br><br>
 <th>Bloqueo</th>
 <th>Perfil</th>
 <th>Acciones</th>
+
 </tr>
 </thead>
 <tbody>
@@ -40,13 +40,9 @@ $data.='</td>
 </td>
 </tr>';
 }
-
 $data .= '
-
 </tbody>
 </table>
-</div>
-</div>
 </div>
 ';
 echo $data;
