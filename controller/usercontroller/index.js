@@ -83,6 +83,11 @@ contentType: false,
 processData: false
 })
 .done(function(res){
+swal(
+'Usuario Registrado!',
+'correctamente!',
+'success'
+)
 $('#modaluser').modal('hide')
 readRecords();
 $('#formulariouser')[0].reset();
@@ -94,12 +99,12 @@ $('#modaluser')
 $('#formulariouser').find('[name="nick"]').focus();
 })
 });
+
 function readRecords() {
 $.get("lista.php", {}, function (data, status) {
 $(".lista_user").html(data);
 });
 }
-
 // end delete
 // delete from individual
 function Delete(id) {
@@ -176,6 +181,11 @@ correo:correo,
 nivel:nivel
 }, 
 function (data, status) {
+swal(
+'Usuario Modificado!',
+'correctamente!',
+'success'
+)	
 readRecords();
 }
 );
